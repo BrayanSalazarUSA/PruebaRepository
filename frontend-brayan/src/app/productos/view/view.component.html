@@ -1,0 +1,15 @@
+<div class="container perfil">
+  <h1>Usuario</h1>
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Card image">
+    <div class="card-body">
+      <h4 class="card-title">{{usuario.nombre+' '+usuario.apellido}}</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item list-group-item-primary">Rol: {{usuario.rol.nombre}}</li>
+        <li class="list-group-item">Id: {{usuario.id}}</li>
+        <li class="list-group-item">Edad: {{usuario.edad}}</li>
+        <li class="list-group-item">Fecha de ingreso: {{usuario.fechaIngreso}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

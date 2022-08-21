@@ -1,0 +1,100 @@
+<ul class="alert alert-danger" *ngIf="errores?.length>0">
+  <li *ngFor="let err of errores">
+    {{err}}
+  </li>
+</ul>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-5">
+      <div class="card-body">
+        <h5 class="card-title">Crear Producto</h5>
+        <form #productoFrom="ngForm">
+          <div class="col-md-11">
+            <label for="nombre" class="form-label">Nombre producto</label>
+            <input
+              type="email"
+              class="form-control"
+              [(ngModel)]="producto.nombre"
+              name="nombre"
+              id="nombre"
+              #nombre="ngModel"
+            />
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">El nombre es requerido</div>
+              <div *ngIf="nombre.errors.minlengt">El nombre debe tener al menos 4 caracteres</div>
+            </div>
+          </div>
+          <div class="col-md-11">
+            <label for="inputPassword4" class="form-label">Cantidad</label>
+            <input
+              type="number"
+              [(ngModel)]="producto.cantidad"
+              name="cantidad"
+              class="form-control"
+              id="inputPassword4"
+              #cantidad="ngModel"
+            />
+            <div class="alert alert-danger" *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)">
+              <div *ngIf="cantidad.errors.required">El nombre es requerido</div>
+            </div>
+          </div>
+          <div class="col-md-11">
+            <label for="inputCity" class="form-label">Fecha</label>
+            <input
+              [(ngModel)]="producto.fechaIngreso"
+              name="apellido"
+              type="date"
+              class="form-control"
+              id="inputCity"
+              #fecha="ngModel"
+            />
+            <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+              <div *ngIf="fecha.errors.required">La fecha es requerida</div>
+            </div>
+          </div>
+          <div class="col-md-11">
+            <label for="inputState" class="form-label">Usuario</label>
+            <label for="inputState" class="form-label">{{producto.usuario.nombre}}</label>
+            <select
+              [(ngModel)]="producto.usuario.id"
+              name="apellido"
+              id="inputState"
+              class="form-select"
+              #usuario="ngModel"
+            >
+              <option value="{{ usuario.id }}" *ngFor="let usuario of usuarios">
+                {{ usuario.nombre }}
+              </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="usuario.invalid && (usuario.dirty || cantidad.touched)">
+              <div *ngIf="usuario.errors.required">Eusuario es requerido</div>
+            </div>
+          </div>
+          <div class="col-sm-12 my-3">
+            <button
+              class="btn btn-primary"
+              role="button"
+              (click)="create()"
+              *ngIf="!producto.id; else elseBlock"
+              [disabled]="!productoFrom.form.valid"
+            >
+              Crear
+            </button>
+            <ng-template #elseBlock>
+              <button class="btn btn-primary"  [disabled]="!productoFrom.form.valid" role="button" (click)="update()">
+                Editar
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <img
+        src="./../../../assets/images/undraw_developer_activity_re_39tg.svg"
+        class="img-fluid rounded-start"
+        alt="..."
+      />
+    </div>
+  </div>
+</div>
